@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<!-- Html Start -->
+<html>
+
+<!-- Head Start -->
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="Token type-compatible knowledge Distillation">
+  <meta property="og:title" content="GenRecal: Generation after Recalibration"/>
+  <meta property="og:description" content="Token type-compatible knowledge Distillation"/>
+  <meta property="og:url" content=""/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="figures/figure2.png" />
+  <meta property="og:image:width" content="2048"/>
+  <meta property="og:image:height" content="2048"/>
+
+
+  <meta name="twitter:title" content="GenRecal: Generation after Recalibration">
+  <meta name="twitter:description" content="Token type-compatible knowledge Distillation">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="figures/figure2.png">
+  <meta name="twitter:card" content="Token type-compatible knowledge Distillation">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="Vision Language Models, Knowledge Distillation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>GenRecal: Generation after Recalibration from Large to Small Vision Language Models</title>
+  <link rel="shortcut icon" type="image/png" href="https://www.nvidia.com/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="css/others.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<!-- Head End -->
+
+<!-- Body Start -->
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop is-max-mobile">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title" style="font-size: 30pt;">
+              <strong>GenRecal</strong>: <strong>Gen</strong>eration after <strong>Recal</strong>ibration
+              <br>from Large to Small Vision Language Models
+            </h1>
+
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://sites.google.com/view/byungkwanlee">Byung-Kwan Lee</a><sup>1,2*</sup>&nbsp&nbsp&nbsp
+              </span>
+              <span class="author-block">
+                <a href="https://ryohachiuma.github.io/">Ryo Hachiuma</a><sup>1</sup>&nbsp&nbsp&nbsp
+              </span>
+              <span class="author-block">
+                <a href="https://www.ivllab.kaist.ac.kr/ivylab-ivllab">Yong Man Ro</a><sup>2</sup>&nbsp&nbsp&nbsp
+              </span>
+              <br>
+              <span class="author-block">
+                <a href="https://vllab.ee.ntu.edu.tw/ycwang.html">Yu-Chiang Frank Wang</a><sup>1,3</sup>&nbsp&nbsp&nbsp
+              </span>
+              <span class="author-block">
+                <a href="https://kristery.github.io/">Yueh-Hua Wu</a><sup>1</sup>
+              </span>
+            </div>
+
+            <div class="is-size-4 publication-authors">
+            <span class="eql-cntrb">
+              <br>
+                <small>
+                <sup>*</sup>Work Done during Internship
+                </small>
+            </span>
+            </div>
+
+            <!-- <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>NVIDIA,&nbsp&nbsp&nbsp&nbsp<sup>2</sup>KAIST,&nbsp&nbsp&nbsp&nbsp<sup>3</sup>NTU</span>
+            </div> -->
+
+            <!-- Logos -->
+            <div class="logos">
+                1<img src="logo/nvidia-logo-horz.png" alt="NVIDIA Logo" class="nvidia-logo">
+                2<img src="logo/kaist_logo.png" alt="KAIST Logo" class="kaist-logo">
+                &nbsp&nbsp
+                3<img src="logo/ntu_logo.png" alt="NTU Logo" class="ntu-logo">
+                <br>
+                <div class="conference">-NeurIPS 2025 Preparation-</div>
+              </div>
+
+            <div class="column has-text-centered">
+            <div class="publication-links">
+
+            <!-- Arxiv PDF link -->
+            <span class="link-block">
+            <a href=""
+            class="external-link button is-normal is-rounded is-dark">
+            <span class="icon">
+                <i class="fas fa-file-pdf"></i>
+            </span>
+            <span>ArXiv</span>
+            </a>
+            </span>
+            
+            &nbsp;
+
+            <!-- Github link -->
+            <span class="link-block">
+              <a href=""
+              class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                  <i class="fab fa-github"></i>
+              </span>
+              <span>Code (Coming Soon!)</span>
+              </a>
+              </span>
+              
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser video-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="subtitle has-text-centered"
+      style="margin-top: 10pt; font-size: 20pt; color: #20b30c; font-weight: 1000;">
+      ▶️ Overview Video (Sound)
+      </div>
+      <video poster="" id="tree" autoplay controls muted loop height="100%">
+        <source src="genrecal_video.mp4"
+        type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
+
+<!-- Paper Summary -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop is-max-mobile">
+  <div class="columns is-centered has-text-centered">
+  <div class="column is-four-fifths">
+  <div class="content has-text-justified">
+      <span class="heading">Summary:</span> Recent advancements in vision-language models (VLMs) have leveraged large language models (LLMs) to achieve performance on par with closed-source systems like GPT-4V.
+      However, deploying these models in real-world scenarios, particularly on resource-constrained devices, remains challenging due to their substantial computational demands.
+      This has spurred interest in distilling knowledge from large VLMs into smaller, more efficient counterparts.
+      A key challenge arises here from the diversity of VLM architectures, which are built on different LLMs and employ varying token types—differing in vocabulary size, token splits, and token index ordering.
+      To address this challenge of limitation to a specific VLM type, we present <strong>Gen</strong>eration after <strong>Recal</strong>ibration (<strong>GenRecal</strong>), a novel, general-purpose distillation framework for VLMs.
+        GenRecal incorporates a Recalibrator that aligns and adapts feature representations between heterogeneous VLMs, enabling effective knowledge transfer across different types of VLMs.
+        Through extensive experiments on multiple challenging benchmarks, we demonstrate that GenRecal significantly improves baseline performances, eventually outperforming large-scale open- and closed-source VLMs.
+
+  </div>
+  </div>
+  </div>
+  </div>
+  </section>
+
+<!-- Image with caption -->
+<section class="section hero is-small">
+<div class="container is-max-desktop is-max-mobile">
+<figure class="image-container">
+  <div class="zoomcaption">🔍 Click to zoom in</div>
+  <img class="clickable-image" src="figures/figure1.png">
+  <figcaption><br>Figure 1: (Left) Visualizing the token indices of a given image and text prompt and representing the possibility of distillation among various VLM pair combinations, comparing traditional distillation with our proposed distillation framework, GenRecal. Note that, the parentheses mean each VLM's LLM tokenizer, '...' indicates the placement of image features, and the number of these features varies depending on the image embedding strategy. (Right) Comparing the performance of a challenging evaluation benchmark, MM-Vet, with [A] baseline, [B] SFT on the baseline, [C] traditional distillation and [D] GenRecal from same token types of large VLMs, and GenRecal with more powerful [E] teacher and [F] student VLMs.
+  </figcaption>
+</figure>
+</div>
+</section>
+
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop is-max-mobile">
+  <div class="columns is-centered has-text-centered">
+  <div class="column is-four-fifths">
+  <div class="content has-text-justified">
+      <span class="heading">Why is GenRecal really needed?</span>
+      GenRecal plays a critical role in advancing vision-language model (VLM) distillation by addressing a key limitation of existing methods: incompatibility between teacher and student models with different token types. Traditional distillation approaches often fail when the models do not share the same vocabulary, token splitting strategies, or token index orders. GenRecal overcomes this by introducing a Recalibrator that aligns and adapts the feature representations between heterogeneous VLMs, enabling effective knowledge transfer even when their token types differ. Experimental results show that GenRecal not only outperforms traditional distillation methods under the same token types but also allows for greater flexibility in choosing more powerful teacher models, leading to stronger student VLMs. This compatibility and performance boost demonstrate GenRecal's significance in enabling scalable and general-purpose VLM distillation across diverse architectures.
+  </div>
+  </div>
+  </div>
+  </div>
+</section>
+
+
+<!-- Image with caption -->
+<section class="section hero is-small">
+<div class="container is-max-desktop is-max-mobile">
+<figure class="image-container">
+  <div class="zoomcaption">🔍 Click to zoom in</div>
+  <img class="clickable-image" src="figures/figure2.png">
+  <figcaption><br>Figure 2: (Left) Comparison of the challenging benchmark performances, MMB, MM-Vet, MMMU, and MMMU-Pro by changing teacher vision-language models (VLMs) to distill the knowledge into small VLMs. Notably, the more powerful the teacher VLMs we select, the greater the performance improvement we can achieve. (Right) Comparing the performance of the challenging benchmark: MMMU, with GenRecal and various vision-language models across model sizes.
+  </figcaption>
+</figure>
+</div>
+</section>
+
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop is-max-mobile">
+  <div class="columns is-centered has-text-centered">
+  <div class="column is-four-fifths">
+  <div class="content has-text-justified">
+      <span class="heading">Contribution:</span>
+      <ul>
+        <li>
+          <b>A New Efficient VLM Family:</b> We introduce efficient VLM family, Generation after Recalibration (GenRecal), which consistently outperforms both open- and closed-source VLMs on challenging benchmarks.
+        </li>
+        <li>
+          <b>Token Types-compatible Recalibration:</b> GenRecal employs Recalibrator to align and adapt feature representations of large and small VLMs, enabling general-purpose distillation across various token types of vocabulary size, token splits, and token index ordering. 
+        </li>
+        <li>
+          <b>Broad Applicability:</b>  GenRecal is compatible with a wide range of VLM architectures across different model sizes, overcoming the challenge of selecting large VLMs that have different token types and demonstrating its practicality for real-world deployment in resource-constrained settings.
+        </li>
+      </ul>
+
+
+  </div>
+  </div>
+  </div>
+  </div>
+</section>
+
+<!-- Image with caption -->
+<section class="section hero is-small">
+<div class="container is-max-desktop is-max-mobile">
+<figure class="image-container">
+  <div class="zoomcaption">🔍 Click to zoom in</div>
+  <img class="clickable-image" src="figures/figure3.png">
+  <figcaption><br>Figure 3: We explore the range of distillation combinations between teacher and student VLMs using two approaches: (a) traditional distillation and (b) our proposed model, GenRecal. Unlike traditional distillation—which support only a limited set of pairings—GenRecal offers the flexibility to select any model for distillation, thereby enabling a more versatile and comprehensive distillation framework.
+  </figcaption>
+</figure>
+</div>
+</section>
+
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop is-max-mobile">
+  <div class="columns is-centered has-text-centered">
+  <div class="column is-four-fifths">
+  <div class="content has-text-justified">
+      <span class="heading">Training Overview:</span>
+      The training of GenRecal follows a three-stage process designed to enable general-purpose distillation across heterogeneous vision-language models (VLMs). In the first stage, the Recalibrator is trained while freezing all parameters of both large and small VLMs. During this phase, the model minimizes autoregressive loss using ground-truth answers and KL divergence between the recalibrated logits and the original logits from the large VLM, thereby aligning feature representations across models. A key regularization strategy is applied here to prevent the feature deviation from the large VLM, which is crucial for achieving effective distillation. In the second stage, distillation is further refined by jointly training the Recalibrator and the small VLM’s body using both the original losses and an additional supervised fine-tuning (SFT) loss, helping the small VLM better learn the shared feature space. Finally, in the third stage, all components except the vision encoder are fine-tuned with continued SFT to enhance instruction-following capabilities and solidify the knowledge transfer from the large VLM.
+
+  </div>
+  </div>
+  </div>
+  </div>
+</section>
+
+
+<!-- Image with caption -->
+<section class="section hero is-small">
+<div class="container is-max-desktop is-max-mobile">
+<figure class="image-container">
+  <div class="zoomcaption">🔍 Click to zoom in</div>
+  <img class="clickable-image" src="figures/figure4.png">
+  <figcaption><br>Figure 4: Overview of GenRecal architecture and its training stages. We let q_s and a_s denote small VLM's embedded tokens (i.e., image and text tokens are included together) for question and answer in visual instruction tuning dataset. In addition, q_l and a_l are denoted by the large VLM's embedded tokens. Note that, vision-related modules such as vision encoder and projector for image tokens are omitted in this figure.
+  </figcaption>
+</figure>
+</div>
+</section>
+
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop is-max-mobile">
+  <div class="columns is-centered has-text-centered">
+  <div class="column is-four-fifths">
+  <div class="content has-text-justified">
+      <span class="heading">Experiments:</span>
+      <ul>
+        <li>
+          <b>Effectiveness Across Model Sizes:</b>
+          As described in the manuscript, GenRecal consistently outperforms baseline and smaller-scale models, demonstrating its generalization across different student VLM sizes. Using stronger student VLMs such as InternVL2.5-8B notably enhances distillation performance, whereas smaller student VLMs tend to underperform, even when the teacher VLM remains the same.
+        </li>
+        <li>
+          <b>Impact of Teacher VLM Strength:</b>
+          Experimental results confirm that stronger teacher VLMs lead to better performance in the student models. This trend holds across various teacher-student combinations, suggesting that the strength of the teacher VLM is a crucial factor in successful knowledge distillation.
+        </li>
+        <li>
+          <b>Role of Recalibrator in Feature Alignment:</b>
+          Visualization shows that Recalibrator effectively aligns the feature representations of student VLMs to those of teacher VLMs over training. Loss comparisons further support that Recalibrator enables shared feature representations necessary for general-purpose distillation.
+        </li>
+
+      </ul>
+      
+  </div>
+  </div>
+  </div>
+  </div>
+  </section>
+
+<!-- Image with caption -->
+<section class="section hero is-small">
+<div class="container is-max-desktop is-max-mobile">
+<figure class="image-container">
+  <div class="zoomcaption">🔍 Click to zoom in</div>
+  <img class="clickable-image" src="figures/figure5.png">
+  <figcaption><br>Figure 5: An overview of our training pipeline, illustrating both the question prompt and the measurement/legend annotations (top), followed by t-SNE visualizations (bottom) of teacher and student VLM pairings at the initial and final training stages. The question prompt (upper-left) shows the format of the question, while the measurement and legend box (upper-right) shows key model components to measure. Each scatter plot in the lower panels corresponds to a different combination of teacher and student VLM sizes, capturing how the learned representations evolve from early to later training iterations.
+  </figcaption>
+</figure>
+</div>
+</section>
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop is-max-mobile">
+  <div class="columns is-centered has-text-centered">
+  <div class="column is-four-fifths">
+  <div class="content has-text-justified">
+    <span class="heading">Limitation:</span>
+    While GenRecal demonstrates significant performance improvements over traditional distillation methods—even under the same token types between teacher and student VLMs—it still relies on the use of the large VLM's VLM-head for knowledge transfer. This dependency may limit flexibility when access to the full large model is restricted, such as in partially open-source or API-based settings. Moreover, the current GenRecal framework focuses on distilling final-layer features, potentially missing out on finer-grained knowledge captured in intermediate layers. Although it supports general-purpose distillation across token types, further work is needed to extend its capabilities to multi-source teacher scenarios and sequential knowledge alignment for richer, hierarchical distillation.
+      
+
+  </div>
+  </div>
+  </div>
+  </div>
+</section>
+
+
+<!-- Citation for This Template -->
+<footer class="footer">
+<div class="container">
+<div class="columns is-centered">
+    <div class="column is-8">
+    <div class="content">
+
+        <p>
+        This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+        You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+        Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
+
+    </div>
+    </div>
+</div>
+</div>
+</footer>
+
+
+<!-- Java Script -->
+<script>
+  // Get all images with the class 'clickable-image'
+  const images = document.querySelectorAll(".clickable-image");
+
+  // Create a modal for the zoom effect
+  const modal = document.createElement("div");
+  modal.className = "fullscreen-modal";
+  document.body.appendChild(modal);
+
+  const closeButton = document.createElement("div");
+  closeButton.className = "close-btn";
+  closeButton.innerHTML = "&times;";
+  modal.appendChild(closeButton);
+
+  const fullscreenImage = document.createElement("img");
+  modal.appendChild(fullscreenImage);
+
+  // Add event listeners to all images
+  images.forEach((image) => {
+    image.addEventListener("click", () => {
+      fullscreenImage.src = image.src; // Set the modal image to the clicked image
+      modal.style.display = "flex";
+    });
+  });
+
+  // Close the modal on close button click
+  closeButton.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  // Close the modal on outside click
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+
+
+
+// slider
+const image_list = [
+    "figures/text/1.png",
+    "figures/text/2.png",
+    "figures/text/3.png",
+    "figures/text/4.png",
+    "figures/text/5.png",
+    "figures/text/6.png",
+    "figures/text/7.png",
+    "figures/text/8.png",
+    "figures/text/9.png",
+    "figures/text/10.png",
+    "figures/text/11.png",
+    "figures/text/12.png"
+];
+
+let currentIndex = 0;
+
+const sliderImage = document.getElementById("slider-image");
+const totalImages = image_list.length;
+
+// 이미지 변경 함수
+function showImage(index) {
+    sliderImage.src = image_list[index]; // 이미지만 즉시 변경
+}
+
+// 다음 이미지 표시
+function showNextImage() {
+    currentIndex = (currentIndex + 1) % totalImages;
+    showImage(currentIndex);
+}
+
+// 이전 이미지 표시
+function showPreviousImage() {
+    currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+    showImage(currentIndex);
+}
+
+// 버튼 클릭 이벤트
+document.querySelector(".left-button").addEventListener("click", showPreviousImage);
+document.querySelector(".right-button").addEventListener("click", showNextImage);
+
+// 키보드 이벤트
+document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+        showPreviousImage();
+    } else if (event.key === "ArrowRight") {
+        showNextImage();
+    }
+});
+
+</script>
+
+
+<!-- Body End -->
+</body>
+<!-- Html End -->
+</html>
