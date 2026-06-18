@@ -254,3 +254,18 @@ figcaption {
 #theme-toggle:hover {
   transform: scale(1.08);
 }
+
+/* In dark mode, group the affiliation logos onto a single light card
+   so the dark NVIDIA logo stays visible and the NTU white box blends in. */
+[data-theme="dark"] .logos {
+  display: inline-block;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 6px 28px;
+  color: #363636;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .logos img {
+  margin-bottom: 0;
+}
