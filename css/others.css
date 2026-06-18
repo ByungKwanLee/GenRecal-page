@@ -28,6 +28,7 @@
 /* Add spacing and alignment for logos */
 .logos {
   text-align: center; /* Center the logos */
+  margin-top: 35px;
   margin-bottom: 30px;
 }
 
